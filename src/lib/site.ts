@@ -116,7 +116,12 @@ export type Depoimento = {
   texto: string;
 };
 
-/** Extraídos dos prints de avaliação do Google — texto mantido como está no original. */
+/**
+ * Extraídos dos prints de avaliação do Google.
+ * O conteúdo é o que a pessoa escreveu; houve apenas normalização leve de
+ * pontuação e remoção de emojis, para leitura no site. Nenhuma frase foi
+ * reescrita, cortada ou inventada — ao editar, manter esse critério.
+ */
 export const DEPOIMENTOS: Depoimento[] = [
   {
     nome: "Adriano Diniz Comissoli",

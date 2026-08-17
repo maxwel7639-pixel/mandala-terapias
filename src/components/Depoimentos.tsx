@@ -13,8 +13,8 @@ export default function Depoimentos() {
           </p>
           <h2>O que dizem sobre as sessões.</h2>
           <p>
-            Avaliações publicadas por clientes no perfil do Google. O texto está
-            exatamente como cada pessoa escreveu.
+            Avaliações publicadas por clientes no perfil do Google da Mandala,
+            reproduzidas aqui com o conteúdo preservado.
           </p>
         </div>
 
