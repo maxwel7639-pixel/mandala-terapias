@@ -1,0 +1,63 @@
+.sobre {
+  background: var(--paper);
+}
+
+.foto {
+  position: relative;
+}
+
+.foto img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Filete dourado deslocado, no espírito da diagramação impressa */
+.foto::after {
+  content: "";
+  position: absolute;
+  inset: -12px 12px 12px -12px;
+  border: 1px solid var(--gold);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.creditoFoto {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.corpo p + p {
+  margin-top: 1.25rem;
+}
+
+.corpo p {
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.78;
+}
+
+.assinatura {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--lilac-pale);
+}
+
+.nomeAssinatura {
+  font-family: var(--display);
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.papelAssinatura {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,51 @@
+.cta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.simbolo {
+  display: block;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 2rem;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.titulo {
+  margin-bottom: 1.5rem;
+}
+
+.titulo em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.texto {
+  font-size: 1.0625rem;
+  line-height: 1.78;
+  color: rgba(250, 245, 255, 0.82);
+  margin-bottom: 2.5rem;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.875rem;
+}
+
+.rodapeNota {
+  margin-top: 2.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: rgba(250, 245, 255, 0.55);
+}

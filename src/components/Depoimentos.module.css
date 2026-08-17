@@ -1,0 +1,90 @@
+.depoimentos {
+  background: var(--paper);
+}
+
+.cabecalho {
+  max-width: 54ch;
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.cabecalho p {
+  color: var(--muted);
+  margin-top: 1.25rem;
+}
+
+/* Colunas de revista — o texto flui, não vira grade de cards iguais */
+.colunas {
+  columns: 1;
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 760px) {
+  .colunas {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1080px) {
+  .colunas {
+    columns: 3;
+  }
+}
+
+.item {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  padding-bottom: clamp(2rem, 4vw, 2.75rem);
+  border-bottom: 1px solid var(--lilac-pale);
+}
+
+.estrelas {
+  display: flex;
+  gap: 3px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.texto {
+  font-family: var(--display);
+  font-size: 1.3125rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.texto::before {
+  content: "\201C";
+  color: var(--gold);
+}
+
+.texto::after {
+  content: "\201D";
+  color: var(--gold);
+}
+
+.autor {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.origem {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}

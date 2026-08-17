@@ -1,0 +1,41 @@
+/* Botão flutuante — padrão de entrega MX.
+   Fica afastado das bordas (regra: floating elements com respiro). */
+.flutuante {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-float);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 56px;
+  padding: 0.9rem 1.25rem;
+  background: var(--night);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  box-shadow: 0 10px 30px rgba(27, 11, 51, 0.32);
+  transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
+}
+
+.flutuante:hover {
+  background: var(--gold);
+  color: var(--night);
+}
+
+.rotulo {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .flutuante {
+    right: 1.75rem;
+    bottom: 1.75rem;
+  }
+  .rotulo {
+    display: inline;
+  }
+}

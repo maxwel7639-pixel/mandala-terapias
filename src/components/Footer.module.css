@@ -1,0 +1,112 @@
+.rodape {
+  background: #150826;
+  color: rgba(250, 245, 255, 0.7);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  border-top: 1px solid rgba(167, 139, 250, 0.16);
+}
+
+.grid {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.14);
+}
+
+@media (min-width: 780px) {
+  .grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.marca {
+  font-family: var(--display);
+  font-size: 1.875rem;
+  color: var(--paper);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.marcaSub {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lilac);
+  margin-bottom: 1.25rem;
+}
+
+.descricao {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 38ch;
+}
+
+.tituloCol {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.125rem;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista li {
+  margin-bottom: 0.7rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lista a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px;
+  color: rgba(250, 245, 255, 0.75);
+  text-decoration: none;
+  transition: color var(--t) var(--ease);
+}
+
+.lista a:hover {
+  color: var(--gold-light);
+}
+
+.base {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 2rem;
+  font-size: 0.8125rem;
+  color: rgba(250, 245, 255, 0.5);
+}
+
+@media (min-width: 700px) {
+  .base {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.base a {
+  color: rgba(250, 245, 255, 0.68);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(202, 138, 4, 0.5);
+  transition: color var(--t) var(--ease);
+}
+
+.base a:hover {
+  color: var(--gold-light);
+}
+
+.aviso {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: rgba(250, 245, 255, 0.42);
+  max-width: 76ch;
+}
