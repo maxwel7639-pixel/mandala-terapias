@@ -32,31 +32,33 @@ Gerado com a skill `ui-ux-pro-max`.
 
 - **Padrão de página:** Hero-Centric + Social Proof
 - **Estilo:** Editorial Grid / Magazine — grid assimétrico, capitular, citação de destaque, filetes dourados
-- **Paleta:** roxo espiritual + ouro quente
+- **Paleta:** roxo profundo + ouro quente, escura de ponta a ponta
 - **Tipografia:** Cormorant Garamond (títulos) + Jost (corpo)
 
-### Regra de contraste do ouro
+### Superfícies
 
-`--gold` (#CA8A04) tem contraste 2.8:1 sobre fundo claro — **abaixo do mínimo de 4.5:1**. Por isso o ouro só aparece em:
+O site não tem seção clara. As seções se distinguem por **tom**, nunca por claro-contra-escuro:
 
-- filetes, bordas e detalhes decorativos;
-- texto sobre `--night` (6.2:1 ✓);
-- botão preenchido com texto escuro por cima (5.1:1 ✓).
+| Token | Hex | Uso |
+|---|---|---|
+| `--night` | `#1B0B33` | Hero, Sobre, Como Funciona, FAQ, CTA final |
+| `--night-2` | `#22103F` | Serviços, Depoimentos, Localização |
+| `--surface` | `#2B1456` | Cartões |
+| `--surface-hi` | `#351B66` | Hover e destaque |
 
-Nunca usar ouro em texto corrido sobre papel claro.
+Não há branco puro em nenhuma superfície — o ponto de luz é sempre o ouro. As 24 combinações de texto sobre esses fundos passam em WCAG AA (a mais apertada é ouro sobre `--surface-hi`, 4.77:1).
+
+**Atenção:** `--gold` (#CA8A04) tem só 2.8:1 sobre fundo claro. Se um dia entrar superfície clara, o ouro não serve para texto nela.
 
 ## Pendências
 
-### 1. Faltam 2 fotos
+### 1. Imagens dos cards estão em baixa resolução
 
-Os cards de Reiki e Radiestesia estão com uma gravura dourada de espera, não com foto real — o padrão de entrega MX pede foto de fundo real em card de serviço.
+As três artes das terapias têm cerca de **240px de largura**, e os cards as exibem com uns 350px — ou seja, sobem de escala e ficam levemente macias, principalmente em tela de alta densidade.
 
-Quando as fotos chegarem:
+Se der para reexportar com 1000px ou mais de largura, é só substituir os arquivos em `public/assets/` mantendo os nomes (`terapia-reiki.png`, `terapia-tarot.png`, `terapia-radiestesia.png`). Nada mais precisa mudar.
 
-1. Salvar em `public/assets/` (ex.: `reiki.jpg`, `radiestesia.jpg`)
-2. Em `src/lib/site.ts`, trocar `imagem: null` pelo caminho
-
-O card de Tarot já usa foto real.
+O recorte de cada arte é ajustável pelo campo `foco` em `src/lib/site.ts` — na de Reiki, por exemplo, ele empurra o enquadramento para baixo para a palavra "REIKI" da arte não brigar com o título do card.
 
 ### 2. Texto do "Sobre" precisa do aval da Luana
 

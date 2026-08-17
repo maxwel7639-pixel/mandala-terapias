@@ -1,18 +1,13 @@
 import Image from "next/image";
 import { SERVICOS } from "@/lib/site";
 import { whatsappLink, mensagemDoServico } from "@/lib/whatsapp";
-import { WhatsAppIcon, GravuraReiki, GravuraRadiestesia } from "./Icons";
+import { WhatsAppIcon } from "./Icons";
 import Reveal from "./Reveal";
 import s from "./Servicos.module.css";
 
-const GRAVURAS: Record<string, React.ReactNode> = {
-  reiki: <GravuraReiki />,
-  radiestesia: <GravuraRadiestesia />,
-};
-
 export default function Servicos() {
   return (
-    <section className={`${s.servicos} section`} id="servicos">
+    <section className="section tone-mid" id="servicos">
       <div className="shell">
         <div className={s.intro}>
           <p className="eyebrow">
@@ -35,17 +30,14 @@ export default function Servicos() {
               className={s.card}
             >
               <div className={s.capa}>
-                {servico.imagem ? (
-                  <Image
-                    src={servico.imagem}
-                    alt={`Sessão de ${servico.nome} com a terapeuta Luana`}
-                    width={596}
-                    height={447}
-                    sizes="(max-width: 760px) 90vw, 380px"
-                  />
-                ) : (
-                  <div className={s.gravura}>{GRAVURAS[servico.slug]}</div>
-                )}
+                <Image
+                  src={servico.imagem}
+                  alt={servico.imagemAlt}
+                  width={480}
+                  height={600}
+                  sizes="(max-width: 760px) 90vw, 380px"
+                  style={{ objectPosition: servico.foco }}
+                />
                 <span className={s.numero} aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}
                 </span>

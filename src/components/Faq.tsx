@@ -9,7 +9,7 @@ import s from "./Faq.module.css";
  */
 export default function Faq() {
   return (
-    <section className={`${s.faq} section`} id="faq">
+    <section className="section tone-deep" id="faq">
       <div className="shell">
         <div className={s.cabecalho}>
           <p className="eyebrow">

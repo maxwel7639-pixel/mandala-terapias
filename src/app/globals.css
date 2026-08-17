@@ -3,22 +3,37 @@
    -------------------------------------------------------------------
    Estilo base .... Editorial Grid / Magazine  (ui-ux-pro-max styles #66)
    Padrão ......... Hero-Centric + Social Proof (ui-reasoning)
-   Paleta ......... Roxo espiritual + ouro quente (colors #80)
+   Paleta ......... Roxo profundo + ouro quente (colors #80, aprofundada)
    Tipografia ..... Cormorant Garamond + Jost
 
-   REGRA DE CONTRASTE: o ouro (--gold) tem 2.8:1 sobre papel claro.
-   Nunca usar ouro em texto corrido sobre fundo claro — apenas em
-   filetes, bordas, display grande e texto sobre --night (6.2:1 ✓).
+   O site é escuro de ponta a ponta. As seções se distinguem por tom
+   (--night / --night-2), nunca por claro-contra-escuro. Não há branco
+   puro em nenhuma superfície — o ponto de luz é sempre o ouro.
+
+   REGRA DE CONTRASTE: sobre os fundos escuros daqui, todas as
+   combinações de texto passam de 4.5:1. Se um dia entrar superfície
+   clara, o ouro NÃO serve para texto sobre ela (2.8:1).
    =================================================================== */
 
 /* ---------- TOKENS ---------- */
 :root {
-  /* Roxo */
-  --night: #1b0b33;
-  --night-soft: #2a1250;
-  --ink: #2e1065;
-  --ink-soft: #4c1d95;
-  --muted: #5b4b8a;
+  /* Superfícies — do mais escuro ao mais claro */
+  --night: #1b0b33; /* hero, CTA final */
+  --night-2: #22103f; /* seções alternadas */
+  --surface: #2b1456; /* cartões */
+  --surface-hi: #351b66; /* hover, destaque */
+
+  /* Traços */
+  --line: rgba(167, 139, 250, 0.2);
+  --line-soft: rgba(167, 139, 250, 0.12);
+  --line-gold: rgba(202, 138, 4, 0.5);
+
+  /* Texto */
+  --text: #faf5ff;
+  --text-soft: rgba(250, 245, 255, 0.82);
+  --text-muted: rgba(250, 245, 255, 0.62);
+
+  /* Roxo de apoio */
   --violet: #7c3aed;
   --lilac: #a78bfa;
   --lilac-pale: #ddd6fe;
@@ -27,11 +42,6 @@
   --gold: #ca8a04;
   --gold-light: #e3c36a;
 
-  /* Papel */
-  --paper: #faf5ff;
-  --paper-warm: #f6f1e8;
-  --white: #ffffff;
-
   /* Tipografia */
   --display: var(--font-display), "Cormorant Garamond", Georgia, serif;
   --body: var(--font-body), "Jost", system-ui, sans-serif;
@@ -39,9 +49,9 @@
   /* Ritmo */
   --gutter: 1.5rem;
   --measure: 68ch;
-  --radius: 2px; /* editorial = cantos quase retos, nada de pílula */
+  --radius: 2px; /* editorial = cantos quase retos */
 
-  /* Movimento — 200-300ms conforme regra de wellness (sem motion overload) */
+  /* Movimento — 200-300ms (sem motion overload) */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --t: 240ms;
 
@@ -78,11 +88,12 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  background: var(--night);
 }
 
 body {
-  background: var(--paper-warm);
-  color: var(--ink);
+  background: var(--night-2);
+  color: var(--text);
   font-family: var(--body);
   font-size: 1.0625rem; /* 17px — acima do mínimo de 16px em mobile */
   line-height: 1.7;
@@ -106,14 +117,15 @@ select {
   color: inherit;
 }
 
-/* Textura de papel — dá peso artesanal e tira o ar de template */
+/* Textura sutil — tira o ar de gradiente chapado */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.032;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -127,6 +139,7 @@ h4 {
   line-height: 1.08;
   letter-spacing: -0.015em;
   text-wrap: balance;
+  color: var(--text);
 }
 
 h1 {
@@ -157,7 +170,7 @@ a {
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--lilac);
   margin-bottom: 1.5rem;
 }
 
@@ -165,11 +178,7 @@ a {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--gold-light),
-    transparent
-  );
+  background: linear-gradient(to right, var(--line-gold), transparent);
 }
 
 .eyebrow .num {
@@ -188,7 +197,7 @@ a {
   font-size: 4.2em;
   line-height: 0.82;
   padding: 0.06em 0.12em 0 0;
-  color: var(--ink-soft);
+  color: var(--gold-light);
 }
 
 /* Citação de destaque */
@@ -197,7 +206,7 @@ a {
   font-size: clamp(1.5rem, 3.2vw, 2.1rem);
   font-style: italic;
   line-height: 1.32;
-  color: var(--ink-soft);
+  color: var(--text);
   border-left: 2px solid var(--gold);
   padding-left: 1.5rem;
   margin: 2.5rem 0;
@@ -222,6 +231,15 @@ section {
   padding-block: clamp(4.5rem, 11vw, 8.5rem);
 }
 
+/* Tons de seção — a alternância é sutil, nunca claro vs escuro */
+.tone-deep {
+  background: var(--night);
+}
+
+.tone-mid {
+  background: var(--night-2);
+}
+
 /* Grid assimétrico — o oposto do bento simétrico */
 .grid-editorial {
   display: grid;
@@ -240,12 +258,7 @@ section {
 
 .rule {
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--lilac-pale),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--line), transparent);
   border: 0;
 }
 
@@ -274,7 +287,6 @@ section {
 .btn-gold {
   background: var(--gold);
   color: var(--night);
-  font-weight: 400;
 }
 .btn-gold:hover {
   background: var(--gold-light);
@@ -282,39 +294,12 @@ section {
 
 .btn-outline {
   background: transparent;
-  color: var(--ink);
-  border-color: var(--lilac-pale);
+  color: var(--text);
+  border-color: var(--line);
 }
 .btn-outline:hover {
   border-color: var(--gold);
-  background: var(--white);
-}
-
-/* Sobre fundo escuro */
-.on-night .btn-outline {
-  color: var(--paper);
-  border-color: rgba(167, 139, 250, 0.42);
-}
-.on-night .btn-outline:hover {
-  border-color: var(--gold);
   background: rgba(167, 139, 250, 0.1);
-}
-
-/* ---------- SUPERFÍCIES ESCURAS ---------- */
-.on-night {
-  background: var(--night);
-  color: var(--paper);
-}
-.on-night h1,
-.on-night h2,
-.on-night h3 {
-  color: var(--paper);
-}
-.on-night .eyebrow {
-  color: var(--lilac);
-}
-.on-night .pullquote {
-  color: var(--paper);
 }
 
 /* Céu noturno discreto — pontinhos, não gradiente roxo-azul de SaaS */
@@ -337,13 +322,9 @@ section {
 
 /* ---------- FOCO (acessibilidade — CRITICAL) ---------- */
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--gold-light);
   outline-offset: 3px;
   border-radius: var(--radius);
-}
-
-.on-night :focus-visible {
-  outline-color: var(--gold-light);
 }
 
 /* Pular para o conteúdo */
@@ -352,8 +333,8 @@ section {
   left: -9999px;
   top: 0;
   z-index: 100;
-  background: var(--night);
-  color: var(--paper);
+  background: var(--gold);
+  color: var(--night);
   padding: 0.85rem 1.25rem;
   text-decoration: none;
 }
@@ -373,7 +354,8 @@ section {
   transform: none;
 }
 
-/* Respeita quem pediu menos movimento (regra CRITICAL) */
+/* Respeita quem pediu menos movimento (regra CRITICAL).
+   Vale também para os carrosséis infinitos: eles param. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -383,6 +365,7 @@ section {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-play-state: paused !important;
     transition-duration: 0.01ms !important;
   }
   .reveal {

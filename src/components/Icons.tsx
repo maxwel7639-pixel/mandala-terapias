@@ -134,51 +134,5 @@ export function PlusIcon({ size = 20, className }: IconProps) {
   );
 }
 
-/* ---------------------------------------------------------------
-   Gravuras dos cards de serviço.
-   Uso temporário: são marcas de água decorativas por trás de um
-   fundo escuro, enquanto as fotos reais de Reiki e Radiestesia não
-   chegam. Não substituem a foto — ver README.
-   --------------------------------------------------------------- */
-
-export function GravuraReiki({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      aria-hidden="true"
-      className={className}
-    >
-      <circle cx="100" cy="100" r="70" opacity="0.55" />
-      <circle cx="100" cy="100" r="52" opacity="0.4" />
-      <circle cx="100" cy="100" r="34" opacity="0.3" />
-      <path
-        d="M74 128c-4-14-2-26 6-34 4-4 9-3 10 2l3 14M126 128c4-14 2-26-6-34-4-4-9-3-10 2l-3 14"
-        opacity="0.85"
-      />
-      <path d="M100 62v-18M86 68l-9-15M114 68l9-15" opacity="0.7" />
-    </svg>
-  );
-}
-
-export function GravuraRadiestesia({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M100 30v58" opacity="0.8" />
-      <path d="M100 88l16 26-16 40-16-40 16-26z" opacity="0.9" />
-      <circle cx="100" cy="30" r="4" opacity="0.9" />
-      <ellipse cx="100" cy="168" rx="46" ry="9" opacity="0.35" />
-      <ellipse cx="100" cy="168" rx="30" ry="6" opacity="0.25" />
-      <ellipse cx="100" cy="168" rx="62" ry="12" opacity="0.2" />
-    </svg>
-  );
-}
+/* As gravuras de espera de Reiki e Radiestesia saíram daqui: os três
+   cards passaram a usar imagem real. */

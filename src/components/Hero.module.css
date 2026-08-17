@@ -56,7 +56,7 @@
 .texto {
   font-size: 1.0625rem;
   line-height: 1.75;
-  color: rgba(250, 245, 255, 0.86);
+  color: var(--text-soft);
   max-width: 46ch;
   margin-bottom: 2.25rem;
 }
@@ -97,7 +97,7 @@
   gap: 0.55rem;
   font-size: 0.8125rem;
   letter-spacing: 0.05em;
-  color: rgba(250, 245, 255, 0.78);
+  color: var(--text-soft);
 }
 
 .credencial svg {
@@ -116,7 +116,7 @@
   position: relative;
   justify-self: center;
   width: 100%;
-  max-width: 420px;
+  max-width: 520px; /* foto em paisagem pede mais largura que o quadrado */
 }
 
 /* Moldura dourada deslocada — gesto editorial, não sombra de card */
@@ -132,7 +132,7 @@
 .moldura {
   position: relative;
   overflow: hidden;
-  background: var(--night-soft);
+  background: var(--surface);
 }
 
 .moldura img {
@@ -158,6 +158,6 @@
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(250, 245, 255, 0.55);
+  color: var(--text-muted);
   margin-top: 0.4rem;
 }

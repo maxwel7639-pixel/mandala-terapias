@@ -5,7 +5,7 @@ import s from "./Sobre.module.css";
 
 export default function Sobre() {
   return (
-    <section className={`${s.sobre} section`} id="sobre">
+    <section className="section tone-deep" id="sobre">
       <div className="shell">
         <p className="eyebrow">
           <span className="num">01</span> Quem conduz
@@ -13,16 +13,19 @@ export default function Sobre() {
 
         <div className="grid-editorial">
           <Reveal>
-            <figure className={s.foto}>
-              <Image
-                src="/assets/luana-natureza.png"
-                alt={`${NEGOCIO.terapeuta} ao ar livre, sorrindo, com um relógio de madeira no pulso`}
-                width={947}
-                height={625}
-                sizes="(max-width: 900px) 90vw, 480px"
-              />
-            </figure>
-            <p className={s.creditoFoto}>
+            <div className={s.retratos}>
+              <figure className={s.principal}>
+                <Image
+                  src="/assets/luana-tarot.png"
+                  alt={`${NEGOCIO.terapeuta} segurando a carta A Estrela do tarot, em meio à natureza`}
+                  width={596}
+                  height={596}
+                  sizes="(max-width: 900px) 90vw, 480px"
+                />
+              </figure>
+            </div>
+
+            <p className={s.credito}>
               {NEGOCIO.terapeuta} · {NEGOCIO.cidade}/{NEGOCIO.estado}
             </p>
           </Reveal>

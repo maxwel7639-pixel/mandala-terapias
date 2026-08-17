@@ -26,6 +26,9 @@ export const NEGOCIO = {
     "https://www.google.com/search?q=Mandala+Terapias+Holisticas+Santa+Maria",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Rua+Dr.+Bozano+729+Bonfim+Santa+Maria+RS",
+  /* Embed sem chave de API — o parâmetro output=embed dispensa o Maps JS API. */
+  mapsEmbed:
+    "https://www.google.com/maps?q=Rua+Dr.+Bozano,+729+-+Bonfim,+Santa+Maria+-+RS,+97015-001&z=16&output=embed",
   site: "https://mandala-terapias.vercel.app",
 } as const;
 
@@ -35,8 +38,10 @@ export type Servico = {
   chamada: string;
   descricao: string;
   detalhes: string[];
-  /** Foto de fundo do card. null = aguardando foto real do cliente. */
-  imagem: string | null;
+  imagem: string;
+  imagemAlt: string;
+  /** Recorte do fundo — cada foto tem um ponto de interesse diferente. */
+  foco: string;
 };
 
 export const SERVICOS: Servico[] = [
@@ -51,7 +56,11 @@ export const SERVICOS: Servico[] = [
       "Presencial em Santa Maria ou à distância",
       "Você permanece vestida e confortável",
     ],
-    imagem: null,
+    imagem: "/assets/terapia-reiki.png",
+    imagemAlt:
+      "Pedras equilibradas e uma flor de lótus sobre a água, em luz dourada de fim de tarde",
+    /* Puxa o enquadramento para baixo: evita a palavra REIKI no topo da arte. */
+    foco: "center 72%",
   },
   {
     slug: "tarot",
@@ -64,7 +73,10 @@ export const SERVICOS: Servico[] = [
       "Presencial ou online por vídeo",
       "Você traz a pergunta que está pesando",
     ],
-    imagem: "/assets/luana-tarot.png",
+    imagem: "/assets/terapia-tarot.png",
+    imagemAlt:
+      "Cartas de tarot dispostas na areia à beira-mar, sob a lua cheia, ao lado de uma lamparina acesa",
+    foco: "center 58%",
   },
   {
     slug: "radiestesia",
@@ -77,7 +89,10 @@ export const SERVICOS: Servico[] = [
       "Pessoas e ambientes",
       "Presencial ou à distância",
     ],
-    imagem: null,
+    imagem: "/assets/terapia-radiestesia.png",
+    imagemAlt:
+      "Pêndulo de ametista suspenso sobre uma mesa de madeira, com velas e luzes desfocadas ao fundo",
+    foco: "center 45%",
   },
 ];
 
@@ -110,58 +125,61 @@ export const COMO_FUNCIONA = [
 
 export type Depoimento = {
   nome: string;
-  contexto: string;
-  nota: number;
-  quando: string;
+  /** Print original da avaliação no Google. */
+  imagem: string;
+  largura: number;
+  altura: number;
+  /** Transcrição do print — é o que leitor de tela e busca enxergam. */
   texto: string;
 };
 
 /**
- * Extraídos dos prints de avaliação do Google.
- * O conteúdo é o que a pessoa escreveu; houve apenas normalização leve de
- * pontuação e remoção de emojis, para leitura no site. Nenhuma frase foi
- * reescrita, cortada ou inventada — ao editar, manter esse critério.
+ * Prints das avaliações do Google, exibidos como imagem no carrossel.
+ *
+ * ACESSIBILIDADE: print é texto dentro de imagem, que leitor de tela não lê
+ * e busca não indexa. Por isso cada item carrega a transcrição em `texto`,
+ * usada como alt da imagem. Ao adicionar um print novo, transcreva também.
  */
 export const DEPOIMENTOS: Depoimento[] = [
   {
     nome: "Adriano Diniz Comissoli",
-    contexto: "Local Guide · 63 avaliações",
-    nota: 5,
-    quando: "há 8 meses",
+    imagem: "/assets/depoimentos/adriano.png",
+    largura: 462,
+    altura: 219,
     texto:
-      "Eu sou cético, mas o atendimento da Luana realmente faz efeito e faz me sentir melhor comigo e com o ambiente em volta de mim. Ela é muito cuidadosa e incentiva a gente a pensar sobre si mesmo. Vou voltar!",
+      "Avaliação de 5 estrelas de Adriano Diniz Comissoli, Local Guide: Eu sou cético, mas o atendimento da Luana realmente faz efeito e faz me sentir melhor comigo e com o ambiente em volta de mim. Ela é muito cuidadosa e incentiva a gente a pensar sobre si mesmo. Vou voltar!",
   },
   {
     nome: "Cleô Gomes",
-    contexto: "9 avaliações · 12 fotos",
-    nota: 5,
-    quando: "há 3 anos",
+    imagem: "/assets/depoimentos/cleo.png",
+    largura: 494,
+    altura: 240,
     texto:
-      "O atendimento da Luana é excelente! Ela tem uma energia linda, sua sala é aconchegante, me senti muito bem lá. Super recomendo!",
+      "Avaliação de 5 estrelas de Cleô Gomes: O atendimento da Luana é excelente! Ela tem uma energia linda, sua sala é aconchegante, me senti muito bem lá. Super recomendo!",
   },
   {
     nome: "nadia ravarotto",
-    contexto: "7 avaliações",
-    nota: 5,
-    quando: "há 3 anos",
+    imagem: "/assets/depoimentos/nadia.png",
+    largura: 496,
+    altura: 230,
     texto:
-      "Luana fiquei muito satisfeita e grata com o teu atendimento, você é uma excelente profissional me passou confiança e profissionalismo, super indico o teu trabalho. Gratidão.",
+      "Avaliação de 5 estrelas de nadia ravarotto: Luana fiquei muito satisfeita e grata com o teu atendimento, você é uma excelente profissional me passou confiança e profissionalismo, super indico o teu trabalho. Gratidão.",
   },
   {
     nome: "Naiane Diniz",
-    contexto: "11 avaliações · 8 fotos",
-    nota: 5,
-    quando: "há 3 anos",
+    imagem: "/assets/depoimentos/naiane.png",
+    largura: 497,
+    altura: 207,
     texto:
-      "Muito bom! Lugar super acolhedor. A Luana sempre deixa a gente super a vontade durante as terapias o que faz toda a diferença.",
+      "Avaliação de 5 estrelas de Naiane Diniz: Muito bom! Lugar super acolhedor. A Luana sempre deixa a gente super a vontade durante as terapias o que faz toda a diferença.",
   },
   {
     nome: "Carina Rodrigues",
-    contexto: "1 avaliação",
-    nota: 5,
-    quando: "há 8 meses",
+    imagem: "/assets/depoimentos/carina.png",
+    largura: 488,
+    altura: 203,
     texto:
-      "Maravilhoso. Sério, ético, entrega o que é proposto, bem estruturado, local muito tranquilo.",
+      "Avaliação de 5 estrelas de Carina Rodrigues: Maravilhoso. Sério, ético, entrega o que é proposto, bem estruturado, local muito tranquilo.",
   },
 ];
 

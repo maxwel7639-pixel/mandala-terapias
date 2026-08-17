@@ -1,5 +1,5 @@
 .depoimentos {
-  background: var(--paper);
+  overflow: hidden;
 }
 
 .cabecalho {
@@ -8,83 +8,124 @@
 }
 
 .cabecalho p {
-  color: var(--muted);
+  color: var(--text-muted);
   margin-top: 1.25rem;
 }
 
-/* Colunas de revista — o texto flui, não vira grade de cards iguais */
-.colunas {
-  columns: 1;
-  column-gap: clamp(2rem, 4vw, 3.5rem);
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ---- carrossel horizontal infinito ---- */
+/* Filho direto da <section>, então já ocupa a largura toda sem truque de
+   sangria — importante, porque .reveal usa transform e um translateX aqui
+   seria sobrescrito na hora da revelação. */
+.palco {
+  position: relative;
+  overflow: hidden;
+  padding-block: 0.5rem;
 }
 
-@media (min-width: 760px) {
-  .colunas {
-    columns: 2;
+.palco::before,
+.palco::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(48px, 10vw, 180px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.palco::before {
+  left: 0;
+  background: linear-gradient(to right, var(--night-2), transparent);
+}
+
+.palco::after {
+  right: 0;
+  background: linear-gradient(to left, var(--night-2), transparent);
+}
+
+.pista {
+  display: flex;
+  width: max-content;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  /* ~85s por volta, bem devagar: dá tempo de ler cada print */
+  animation: desfilar 85s linear infinite;
+}
+
+.palco:hover .pista,
+.palco:focus-within .pista {
+  animation-play-state: paused;
+}
+
+@keyframes desfilar {
+  from {
+    transform: translate3d(0, 0, 0);
   }
-}
-
-@media (min-width: 1080px) {
-  .colunas {
-    columns: 3;
+  to {
+    /* -50% = exatamente uma cópia da lista; a emenda não aparece */
+    transform: translate3d(calc(-50% - clamp(0.5rem, 1.25vw, 0.875rem)), 0, 0);
   }
 }
 
 .item {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  margin-bottom: clamp(2rem, 4vw, 2.75rem);
-  padding-bottom: clamp(2rem, 4vw, 2.75rem);
-  border-bottom: 1px solid var(--lilac-pale);
+  flex-shrink: 0;
+  width: clamp(290px, 74vw, 430px);
+  padding: 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  position: relative;
+  transition: border-color var(--t) var(--ease);
 }
 
-.estrelas {
+.item:hover {
+  border-color: var(--gold);
+}
+
+/* Cantos dourados — mesmo acabamento de gravura do resto do site */
+.item::before,
+.item::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--gold);
+  opacity: 0.8;
+}
+
+.item::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.item::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+}
+
+.rodape {
   display: flex;
-  gap: 3px;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.texto {
-  font-family: var(--display);
-  font-size: 1.3125rem;
-  line-height: 1.5;
-  color: var(--ink);
-  margin-bottom: 1.25rem;
-}
-
-.texto::before {
-  content: "\201C";
-  color: var(--gold);
-}
-
-.texto::after {
-  content: "\201D";
-  color: var(--gold);
-}
-
-.autor {
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: var(--ink-soft);
-}
-
-.meta {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 0.35rem;
+  color: var(--text-muted);
 }
 
-.origem {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
+.rodape::before,
+.rodape::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--line-gold);
 }

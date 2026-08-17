@@ -19,7 +19,7 @@ export default function Nav() {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <header className={`${s.nav} on-night`}>
+    <header className={s.nav}>
       <div className="shell">
         <div className={s.inner}>
           <a href="#topo" className={s.marca}>

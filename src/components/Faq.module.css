@@ -1,18 +1,14 @@
-.faq {
-  background: var(--paper);
-}
-
 .cabecalho {
   max-width: 50ch;
   margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
 
 .lista {
-  border-top: 1px solid var(--lilac-pale);
+  border-top: 1px solid var(--line);
 }
 
 .item {
-  border-bottom: 1px solid var(--lilac-pale);
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .pergunta {
@@ -28,7 +24,7 @@
   font-family: var(--display);
   font-size: clamp(1.1875rem, 2.2vw, 1.4375rem);
   line-height: 1.35;
-  color: var(--ink);
+  color: var(--text);
   transition: color var(--t) var(--ease);
 }
 
@@ -41,7 +37,7 @@
 }
 
 .pergunta:hover {
-  color: var(--ink-soft);
+  color: var(--gold-light);
 }
 
 .sinal {
@@ -50,11 +46,10 @@
   place-items: center;
   width: 34px;
   height: 34px;
-  border: 1px solid var(--lilac-pale);
+  border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--gold);
-  transition: transform var(--t) var(--ease),
-    border-color var(--t) var(--ease);
+  transition: transform var(--t) var(--ease), border-color var(--t) var(--ease);
 }
 
 .item[open] .sinal {
@@ -67,5 +62,5 @@
   max-width: 68ch;
   font-size: 1rem;
   line-height: 1.78;
-  color: var(--muted);
+  color: var(--text-muted);
 }

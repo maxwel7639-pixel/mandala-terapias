@@ -6,7 +6,7 @@ import s from "./CtaFinal.module.css";
 
 export default function CtaFinal() {
   return (
-    <section className={`${s.cta} section on-night`} id="agendar">
+    <section className={`${s.cta} section tone-deep`} id="agendar">
       <div className="starfield" aria-hidden="true" />
       <div className="shell">
         <Reveal className={s.conteudo}>

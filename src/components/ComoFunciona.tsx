@@ -4,7 +4,7 @@ import s from "./ComoFunciona.module.css";
 
 export default function ComoFunciona() {
   return (
-    <section className={`${s.como} section on-night`} id="como-funciona">
+    <section className={`${s.como} section tone-deep`} id="como-funciona">
       <div className="starfield" aria-hidden="true" />
       <div className="shell">
         <div className={s.cabecalho}>
@@ -21,9 +21,12 @@ export default function ComoFunciona() {
         <ol className={s.passos}>
           {COMO_FUNCIONA.map((passo, i) => (
             <Reveal as="li" key={passo.numero} delay={i * 80} className={s.passo}>
-              <span className={s.numero} aria-hidden="true">
-                {passo.numero}
-              </span>
+              <div className={s.numero}>
+                <span className={s.numeroValor} aria-hidden="true">
+                  {passo.numero}
+                </span>
+                <span className={s.numeroTraco} aria-hidden="true" />
+              </div>
               <h3 className={s.titulo}>{passo.titulo}</h3>
               <p className={s.texto}>{passo.texto}</p>
             </Reveal>

@@ -1,14 +1,10 @@
-.servicos {
-  background: var(--paper-warm);
-}
-
 .intro {
   max-width: 52ch;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .intro p {
-  color: var(--muted);
+  color: var(--text-muted);
   margin-top: 1.25rem;
   font-size: 1.0625rem;
 }
@@ -31,8 +27,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--night);
-  border: 1px solid rgba(167, 139, 250, 0.18);
+  background: var(--surface);
+  border: 1px solid var(--line);
   overflow: hidden;
   transition: border-color var(--t) var(--ease);
 }
@@ -42,47 +38,34 @@
   border-color: var(--gold);
 }
 
+/* Retrato 4:5 acompanha o formato das artes; recorte 4:3 forçaria
+   um upscale maior e cortaria demais. */
 .capa {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--night-soft);
+  background: var(--night);
 }
 
 .capa img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
-  filter: saturate(0.9);
+  filter: saturate(0.95);
 }
 
-/* Véu escuro para o texto respirar por cima da foto */
+/* Véu escuro: amarra a arte ao roxo do site e dá base ao número */
 .capa::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(27, 11, 51, 0.92) 0%,
-    rgba(27, 11, 51, 0.32) 55%,
-    rgba(27, 11, 51, 0.18) 100%
+    var(--surface) 0%,
+    rgba(43, 20, 86, 0.55) 28%,
+    rgba(27, 11, 51, 0.18) 62%,
+    rgba(27, 11, 51, 0.32) 100%
   );
-}
-
-/* Gravura de espera, enquanto não há foto real da prática */
-.gravura {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--gold);
-  opacity: 0.34;
-}
-
-.gravura svg {
-  width: 62%;
-  height: auto;
 }
 
 .numero {
@@ -101,10 +84,12 @@
   flex-direction: column;
   flex: 1;
   padding: 1.75rem 1.5rem 1.5rem;
+  margin-top: -3.5rem; /* sobe sobre a base já escurecida da imagem */
+  position: relative;
+  z-index: 2;
 }
 
 .nome {
-  color: var(--paper);
   margin-bottom: 0.5rem;
 }
 
@@ -120,7 +105,7 @@
 .descricao {
   font-size: 0.9375rem;
   line-height: 1.72;
-  color: rgba(250, 245, 255, 0.8);
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -128,7 +113,7 @@
   list-style: none;
   padding: 0;
   margin: 0 0 1.75rem;
-  border-top: 1px solid rgba(167, 139, 250, 0.18);
+  border-top: 1px solid var(--line);
 }
 
 .detalhes li {
@@ -136,9 +121,9 @@
   align-items: flex-start;
   gap: 0.6rem;
   padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+  border-bottom: 1px solid var(--line-soft);
   font-size: 0.875rem;
-  color: rgba(250, 245, 255, 0.72);
+  color: var(--text-muted);
 }
 
 .detalhes li::before {
@@ -159,10 +144,10 @@
 .aviso {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
   padding: 1.25rem 1.5rem;
-  border-left: 2px solid var(--lilac-pale);
-  background: rgba(221, 214, 254, 0.22);
+  border-left: 2px solid var(--line-gold);
+  background: rgba(167, 139, 250, 0.07);
   font-size: 0.875rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-muted);
   max-width: 70ch;
 }

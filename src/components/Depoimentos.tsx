@@ -1,11 +1,38 @@
+import Image from "next/image";
 import { DEPOIMENTOS } from "@/lib/site";
-import { StarIcon } from "./Icons";
 import Reveal from "./Reveal";
 import s from "./Depoimentos.module.css";
 
+/**
+ * Uma cópia da lista de prints. Renderizada duas vezes na pista para o
+ * loop emendar sem salto — a segunda cópia é escondida do leitor de tela
+ * para não repetir os mesmos depoimentos.
+ */
+function Prints({ oculto }: { oculto?: boolean }) {
+  return (
+    <>
+      {DEPOIMENTOS.map((d) => (
+        <figure
+          className={s.item}
+          key={`${d.nome}-${oculto ? "b" : "a"}`}
+          aria-hidden={oculto ? "true" : undefined}
+        >
+          <Image
+            src={d.imagem}
+            alt={oculto ? "" : d.texto}
+            width={d.largura}
+            height={d.altura}
+            sizes="430px"
+          />
+        </figure>
+      ))}
+    </>
+  );
+}
+
 export default function Depoimentos() {
   return (
-    <section className={`${s.depoimentos} section`} id="depoimentos">
+    <section className={`${s.depoimentos} section tone-mid`} id="depoimentos">
       <div className="shell">
         <div className={s.cabecalho}>
           <p className="eyebrow">
@@ -13,33 +40,21 @@ export default function Depoimentos() {
           </p>
           <h2>O que dizem sobre as sessões.</h2>
           <p>
-            Avaliações publicadas por clientes no perfil do Google da Mandala,
-            reproduzidas aqui com o conteúdo preservado.
+            Prints das avaliações publicadas no perfil do Google da Mandala,
+            exatamente como estão lá. Passe o mouse para pausar.
           </p>
         </div>
+      </div>
 
-        <ul className={s.colunas}>
-          {DEPOIMENTOS.map((d, i) => (
-            <Reveal as="li" key={d.nome} delay={(i % 3) * 80} className={s.item}>
-              <div className={s.estrelas} aria-hidden="true">
-                {Array.from({ length: d.nota }, (_, k) => (
-                  <StarIcon key={k} size={14} />
-                ))}
-              </div>
-              <span className="sr-only">
-                Avaliação de {d.nota} estrelas em 5.
-              </span>
+      <Reveal className={s.palco}>
+        <div className={s.pista}>
+          <Prints />
+          <Prints oculto />
+        </div>
+      </Reveal>
 
-              <blockquote className={s.texto}>{d.texto}</blockquote>
-
-              <p className={s.autor}>{d.nome}</p>
-              <p className={s.meta}>
-                {d.contexto} · {d.quando}
-              </p>
-              <p className={s.origem}>via Google</p>
-            </Reveal>
-          ))}
-        </ul>
+      <div className="shell">
+        <p className={s.rodape}>Avaliações reais no Google</p>
       </div>
     </section>
   );

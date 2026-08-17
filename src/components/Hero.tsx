@@ -11,7 +11,7 @@ import s from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={`${s.hero} on-night`} id="topo">
+    <section className={`${s.hero} tone-deep`} id="topo">
       <div className="starfield" aria-hidden="true" />
       <div className="shell">
         <div className={s.grid}>
@@ -74,12 +74,12 @@ export default function Hero() {
           <figure className={s.retrato}>
             <div className={s.moldura}>
               <Image
-                src="/assets/luana-tarot.png"
-                alt={`${NEGOCIO.terapeuta}, terapeuta holística em ${NEGOCIO.cidade}, segurando a carta A Estrela do tarot em meio à natureza`}
-                width={596}
-                height={596}
+                src="/assets/luana-natureza.png"
+                alt={`${NEGOCIO.terapeuta}, terapeuta holística em ${NEGOCIO.cidade}, ao ar livre e sorrindo`}
+                width={936}
+                height={622}
                 priority
-                sizes="(max-width: 900px) 90vw, 420px"
+                sizes="(max-width: 900px) 90vw, 520px"
               />
             </div>
             <figcaption className={s.legenda}>

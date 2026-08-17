@@ -6,7 +6,7 @@ import s from "./Localizacao.module.css";
 
 export default function Localizacao() {
   return (
-    <section className={`${s.local} section`} id="localizacao">
+    <section className="section tone-mid" id="localizacao">
       <div className="shell">
         <div className={s.cabecalho}>
           <p className="eyebrow">
@@ -22,7 +22,23 @@ export default function Localizacao() {
               <h3>No espaço</h3>
             </div>
 
-            <address className={s.endereco} style={{ fontStyle: "normal" }}>
+            <div className={s.mapa}>
+              <div className={s.mapaQuadro}>
+                <iframe
+                  src={NEGOCIO.mapsEmbed}
+                  title={`Mapa da localização da ${NEGOCIO.nome} na Rua Dr. Bozano, 729, bairro Bonfim, em ${NEGOCIO.cidade}`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+              <p className={s.mapaLegenda}>
+                <MapPinIcon size={14} />
+                Bonfim · {NEGOCIO.cidade}/{NEGOCIO.estado}
+              </p>
+            </div>
+
+            <address className={s.endereco}>
               Rua Dr. Bozano, 729 — sala 302
               <br />
               Bairro Bonfim, {NEGOCIO.cidade}/{NEGOCIO.estado}
